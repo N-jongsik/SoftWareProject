@@ -1,3 +1,5 @@
+package week4;
+
 public class Myself {
     public static void main(String[] args) {
 
