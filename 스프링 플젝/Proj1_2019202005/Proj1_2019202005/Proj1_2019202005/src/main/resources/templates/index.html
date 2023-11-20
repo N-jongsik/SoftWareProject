@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+    }
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        overflow: hidden;
+    }
+    .image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .image-title {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .upload-button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+<div>
+    <div style="text-align: center;">
+        <h2>Index</h2>
+    </div>
+    <div class="image-grid">
+        <div th:each="image : ${imageList}">
+<!--            이미지 클릭하면 imagview.html로 이동-->
+            <div class="image-container">
+                <img th:src="@{${image.filepath}}" th:onclick="'location.href=\'' + @{imageview} + '/' + ${image.id} +'\''">
+            </div>
+<!--            tilte 클릭하면 imageview.html로 이동-->
+            <div class="image-title" th:text="${image.title}" th:onclick="'location.href=\'' + @{imageview} + '/' + ${image.id} +'\''"></div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+<!--        사진 올리기 버튼 클릭하면 upload.html로 이동-->
+        <button class="upload-button" type="submit" th:onclick="'location.href=\'' + @{upload} + '\''">사진 올리기</button>
+    </div>
+</div>
+</body>
+</html>

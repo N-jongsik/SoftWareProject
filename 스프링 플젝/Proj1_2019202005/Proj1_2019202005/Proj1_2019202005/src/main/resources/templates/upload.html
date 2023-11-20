@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+    <style>
+        .all {
+            width: 800px;
+            margin: auto;
+            padding-top: 18px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .select {
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .select input[type="file"] {
+            margin-right: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="all">
+    <h1>Upload</h1>
+    <!--    사진 올리기-->
+    <form th:object="${image}" th:unless="${image.id != null}" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <div class="title">
+            <h2 style="padding: 24px;">Title(최대 20자)</h2>
+            <textarea name="title" th:value="${image.title}" style="width: 600px; height: 24px; font-size: 16px;" maxlength="20"></textarea>
+        </div>
+        <h2 style="padding: 24px">Comments(최대 100자)</h2>
+        <div class="content">
+            <textarea name="contents" th:value="${image.contents}" style="width: 600px; height: 400px; font-size: 16px;" maxlength="100"></textarea>
+        </div>
+        <div class="select">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png"> <!-- 이미지 파일을 선택하기 위한 파일 입력 필드 확장자는 .jpg, .jpeg, .png으로 설정 -->
+            <button type="submit">전송</button> <!-- 전송 버튼을 클릭하면 폼 데이터가 서버로 전송 -->
+        </div>
+    </form>
+    <!--    수정하기-->
+    <form th:object="${image}" th:if="${image.id != null}" th:action="@{/imageview/upload/{id}(id=${image.id})}" method="post" enctype="multipart/form-data">
+        <div class="title">
+            <h2 style="padding: 24px;">Title(최대 20자)</h2>
+            <textarea name="title" th:value="${image.title}" style="width: 600px; height: 24px; font-size: 16px;" maxlength="20"></textarea>
+        </div>
+        <h2 style="padding: 24px">Comments(최대 100자)</h2>
+        <div class="content">
+            <textarea name="contents" th:value="${image.contents}" style="width: 600px; height: 400px; font-size: 16px;" maxlength="100"></textarea>
+        </div>
+        <div class="select">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png"> <!-- 이미지 파일을 선택하기 위한 파일 입력 필드입니다. 확장자 제한은 .jpg, .jpeg, .png으로 설정되어 있습니다. -->
+            <button type="submit">전송</button> <!-- 전송 버튼을 클릭하면 폼 데이터가 서버로 전송됩니다. -->
+        </div>
+    </form>
+</div>
+</body>
+</html>

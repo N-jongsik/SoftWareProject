@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+    <style>
+        .all {
+            width: 800px;
+            margin: auto;
+            padding-top: 18px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 가로 중앙 정렬을 위해 추가 */
+        }
+
+        .select {
+            margin-top: 24px; /* 위쪽 간격을 늘림 */
+            margin-bottom: 24px; /* 아래쪽 간격을 늘림 */
+        }
+
+        .select input[type="file"] {
+            margin-right: 200px; /* 파일 선택 버튼과 전송 버튼 사이의 간격을 조정 */
+        }
+    </style>
+</head>
+<body>
+<div class="all">
+    <h1>Upload</h1>
+    <!--    사진 올리기-->
+    <form th:object="${modify}" th:unless="${image.id != null}" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <div class="title">
+            <h2 style="padding: 24px;">Title(최대 20자)</h2>
+            <textarea name="title" th:value="${image.title}" style="width: 600px; height: 24px; font-size: 16px;" maxlength="20"></textarea>
+        </div>
+        <h2 style="padding: 24px">Comments(최대 100자)</h2>
+        <div class="content">
+            <textarea name="contents" th:value="${image.contents}" style="width: 600px; height: 400px; font-size: 16px;" maxlength="100"></textarea>
+        </div>
+        <div class="select">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png">
+            <button type="submit">전송</button>
+        </div>
+    </form>
+    <!--    수정하기-->
+    <form th:object="${modify}" th:if="${image.id != null}" th:action="@{/imageview/upload/{id}(id=${image.id})}" method="post" enctype="multipart/form-data">
+        <div class="title">
+            <h2 style="padding: 24px;">Title(최대 20자)</h2>
+            <textarea name="title" th:value="${image.title}" style="width: 600px; height: 24px; font-size: 16px;" maxlength="20"></textarea>
+        </div>
+        <h2 style="padding: 24px">Comments(최대 100자)</h2>
+        <div class="content">
+            <textarea name="contents" th:value="${image.contents}" style="width: 600px; height: 400px; font-size: 16px;" maxlength="100"></textarea>
+        </div>
+        <div class="select">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png">
+            <button type="submit">전송</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>imageview</title>
+    <style>
+        .btn-type {
+            display: flex;
+            justify-content: center;
+            gap: 650px;
+            margin-top: 10px;
+        }
+        .box {
+            width: 100%;
+            border: 1px solid black;
+            padding: 24px 0;
+            margin: 48px 0;
+        }
+        .box.title {
+            height: 50px;
+        }
+        .box.comment {
+            height: 150px;
+        }
+        .all {
+            width: 800px;
+            margin: auto;
+            padding-top: 18px;
+            text-align: center;
+        }
+        .image-container {
+            width: 50%;
+            height: auto;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .image-container img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="all">
+    <h1>ImageView</h1>
+    <div class="image-container">
+        <img th:src="@{'../' + ${image.filepath}}"> <!-- 이미지 파일의 경로를 통해 이미지를 표시 -->
+    </div>
+    <h2>Title</h2>
+    <div class="box title" th:text="${image.title}"></div> <!-- 이미지의 제목 -->
+    <h3>Comments</h3>
+    <div class="box comment" th:text="${image.contents}"></div> <!-- 이미지의 내용 -->
+    <div class="btn-type">
+        <button type="submit" th:onclick="'location.href=\'' + @{upload} + '/' + ${image.id} +'\''">수정</button> <!-- 수정 버튼을 클릭하면 upload.html로 이동 -->
+        <form action="" method="post">
+            <button type="submit">삭제</button> <!-- 삭제 버튼을 클릭하면 이미지를 삭제 -->
+        </form>
+    </div>
+</div>
+</body>
+</html>

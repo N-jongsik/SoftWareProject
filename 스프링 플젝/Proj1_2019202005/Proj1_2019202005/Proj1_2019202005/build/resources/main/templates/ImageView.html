@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ImageView</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid black;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .box + .box {
+            height: 150px;
+            margin-top: 20px;
+        }
+        .box textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            text-align: center;
+        }
+        .select {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left:520px;
+            margin-top: 20px;
+        }
+        .select input[type="file"] {
+            margin-right: 180px;
+        }
+        .select input[type="submit"] {
+            margin-right: 400px;
+        }
+    </style>
+</head>
+<body>
+<h1>Image나와야 함</h1>
+<div class="box">
+    <textarea placeholder="Input : Title (최대 20자)" maxlength="20" type="text"></textarea>
+</div>
+<div class="box">
+    <textarea placeholder="Comment (최대 100자)" maxlength="100"></textarea>
+</div>
+<div class="select">
+    <input type="submit" value="수정">
+    <input type="submit" value="삭제">
+</div>
+</body>
+</html>
